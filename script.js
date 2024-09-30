@@ -1,26 +1,3 @@
-// Smooth Scrolling for Internal Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Scroll Animations for Sections
-const sections = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-});
-sections.forEach(section => {
-    observer.observe(section);
-});
-
 // Dark Mode Toggle with Icons
 const toggleButton = document.getElementById('theme-toggle');
 let isDarkMode = false; // Track the current mode
@@ -37,7 +14,7 @@ toggleButton.addEventListener('click', () => {
     
     // Toggle between moon and sun icons
     isDarkMode = !isDarkMode;
-    toggleButton.innerHTML = isDarkMode ? '☀️' : '🌙'; // Change the icon based on the mode
+    toggleButton.innerHTML = isDarkMode ? '☀️' : '🌙';
 });
 
 // Floating Action Button Scroll to Contact Section
