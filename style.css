@@ -1,3 +1,4 @@
+/* Body and General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,7 +6,7 @@ body {
     background-color: #f4f4f4;
     color: #333;
     transition: background-color 0.3s ease, color 0.3s ease;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure the body takes up the full viewport height */
 }
 header {
     background-color: #007ACC;
@@ -13,7 +14,6 @@ header {
     padding: 20px;
     text-align: center;
     position: relative;
-    z-index: 100; /* Added to keep header above content */
 }
 header h1 {
     margin: 0;
@@ -37,36 +37,26 @@ section:hover {
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: all 0.4s ease; /* Smooth transition for sticky effect */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-}
-header.sticky {
-    padding: 10px; /* Shrinking effect */
 }
 
-#theme-toggle {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    background-color: #444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 24px; 
-    transition: background-color 0.4s ease, transform 0.3s ease;
-    z-index: 2000; /* Higher than content */
+/* Typewriter Effect */
+.typewriter h1 {
+    overflow: hidden;
+    border-right: .15em solid #007ACC;
+    white-space: nowrap;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
 }
-#theme-toggle:hover {
-    background-color: #555;
-    transform: scale(1.1); /* Add hover effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #007ACC; }
 }
 
+/* Fade-in Effect */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -77,33 +67,26 @@ header.sticky {
     transform: translateY(0);
 }
 
-/* Flexbox for Projects Section */
+/* Project Hover Effect */
 .projects {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    overflow: hidden;
 }
 .project {
-    flex: 1 1 100%;
-    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-@media (min-width: 768px) {
-    .project {
-        flex: 1 1 48%; /* Two-column layout on larger screens */
-    }
-}
-
-@media (min-width: 1024px) {
-    .project {
-        flex: 1 1 30%; /* Three-column layout on wider screens */
-    }
+.project:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Floating Action Button */
 .fab {
     position: fixed;
-    bottom: 80px;
+    bottom: 80px; /* Increased margin from the footer */
     right: 20px;
     width: 60px;
     height: 60px;
@@ -117,25 +100,98 @@ header.sticky {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background-color 0.3s ease;
-    z-index: 1000;
 }
 .fab:hover {
     background-color: #005F99;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-    #theme-toggle {
-        top: 10px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-    section {
-        margin: 10px;
-    }
+/* Dark Mode */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+section.dark-mode {
+    background-color: #444;
+    color: #fff;
+}
+header.dark-mode, footer.dark-mode {
+    background-color: #222;
+}
+
+/* Loading Spinner */
+#spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.spinner-border {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #007ACC;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007ACC;
+    color: white;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+a {
+    color: #007ACC;
+    text-decoration: none;
+}
+
+/* Toggle Button */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px; /* Placed at the top-left corner */
+    width: 50px;
+    height: 50px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px; /* Font size for the icons */
+    transition: background-color 0.4s ease, transform 0.3s ease;
+}
+#theme-toggle:hover {
+    background-color: #555;
+    transform: scale(1.1); /* Add hover effect */
+}
+
+/* Sticky Header */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s ease; /* Smooth transition for sticky effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds shadow to make it look distinct */
+}
+
+/* Optional: Transition for shrinking header when it becomes sticky */
+header {
+    transition: all 0.4s ease; /* Smooth transition when header becomes sticky */
+    padding: 20px; /* Default padding */
+}
+header.sticky {
+    padding: 10px; /* Reduce padding when sticky for a shrinking effect */
 }
